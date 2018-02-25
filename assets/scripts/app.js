@@ -36,19 +36,19 @@ function Table(table) {
 
 function TrainTable(trainTable) {
     Table.call(this, {
-        container: '#traffic-table',
+        container: '#train-table',
         head: {a: 'Nr', b: 'Avgång', c: 'Ankomst'},
         rows: trainTable.rows
     });
 
     this.status = trainTable.status;
     
-    function printCaption(info) {
-        var container = document.querySelector('#traffic-table');
+    function printCaption() {
+        var container = document.querySelector('#train-table');
         var caption = document.createElement('caption');
-        container.innerHTML = '<caption class="ml-3">' + info.status + '</caption> ' + container.innerHTML;
+        container.innerHTML = '<caption class="ml-3">' + this.status + '</caption> ' + container.innerHTML;
     }
-    printCaption(this);
+    printCaption();
 };
 
 function WeatherTable(info) {
@@ -111,18 +111,18 @@ var weatherInfo = [new WeatherRow('9:00', 'Moln', '16°C', '3m/s'),
 
 var wt = new WeatherTable(weatherInfo);
 
-var button = document.querySelector('#traffic-button');
+var button = document.querySelector('#train-button');
 button.addEventListener('click', (event) => {
-    var container = document.querySelector('#traffic-table');
+    var container = document.querySelector('#train-table');
     container.innerHTML = '';
-    var input = document.querySelector('#traffic-input');
+    var input = document.querySelector('#train-input');
     var inputText = input.value;
     input.value = '';
-    var specificData = trafficInfo.filter((x) => x.location.toUpperCase() == inputText.toUpperCase());
-    var p = document.querySelector('#traffic-table ~ p');;
-    if (specificData.length > 0) {
-        var tt = new TrainTable(specificData[0]);
-        p.innerHTML = 'Åker från: ' + specificData[0].location;
+    var specificInfo = trafficInfo.filter((x) => x.location.toUpperCase() == inputText.toUpperCase());
+    var p = document.querySelector('#train-table ~ p');;
+    if (specificInfo.length > 0) {
+        var tt = new TrainTable(specificInfo[0]);
+        p.innerHTML = 'Åker från: ' + specificInfo[0].location;
     }
     else {
         p.innerHTML = '';
