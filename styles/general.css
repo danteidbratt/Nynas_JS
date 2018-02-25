@@ -14,3 +14,11 @@
 #reply-no:checked ~ * {
     visibility: hidden;
 }
+
+#traffic-table {
+    font-size: 14px;
+}
+
+#weather-table {
+    font-size: 12px;
+}

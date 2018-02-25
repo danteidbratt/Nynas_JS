@@ -42,40 +42,34 @@
     <div class="container-fluid bg-light pt-3 p-md-5">
         <div class="row">
             <div class="col-md-7 mb-5">
-                <section class="card border-primary ml-md-3 p-4 bg-white">
-                    <header>
+                <section class="card border-primary ml-md-3 p-1 bg-white">
+                    <header class="mt-3 ml-3">
                         <h2>Åker tågen?</h2>
                     </header>
                     <div class="card-body">
-                        <form class="form-group m-3">
+                        <form class="form-group ml-3">
                             <div class="row">
                                 <label class="form-ckeck-label" for="from_location">Jag åker ifrån ...</label>
-                                <input class="form-control"
-                                       type="text"
-                                       id="traffic-input"
-                                       maxlength=30
-                                       placeholder="ex. Stockholm / Norrköping / Södertälje">
+                                <input class="form-control" type="text" id="traffic-input" maxlength=30 placeholder="ex. Stockholm / Norrköping / Södertälje">
                                 <button class="btn btn-info mt-3" type="submit" id="traffic-button">Skicka</button>
                             </div>
                         </form>
                         <table class="table table-striped" id='traffic-table'>
 
                         </table>
-                        <p class="text-secondary">Åker från <span id='departure-info'></span></p>
+                        <p class="text-secondary"></p>
                     </div>
                 </section>
             </div>
             <div class="col-md-5">
-                <section class="card border-primary p-4 bg-white">
+                <section class="card border-primary bg-white">
                     <header>
-                        <h2>Vädret på Nicksta</h2>
+                        <h2 class="m-3">Vädret på Nicksta</h2>
                     </header>
                     <div class="card-body">
-                        <div>
-                            <table class="table table-striped" id='weather-table'>                    
+                        <table class="table table-striped" id='weather-table'>
 
-                            </table>
-                        </div>
+                        </table>
                     </div>
                 </section>
             </div>

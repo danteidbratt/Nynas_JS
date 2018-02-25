@@ -93,7 +93,7 @@ var trafficInfo = [
     rows: [new TrafficRow('36', '09:10', '11:30'),
            new TrafficRow('36', '11:10', '13:30'),
            new TrafficRow('36', '13:10', '15:30')],
-    status: 'Förseningar pga vagnfel'
+    status: 'Förseningar p.g.a. vagnfel'
 }, 
    {location: 'Södertälje',
     rows: [new TrafficRow('21', '11:00', '11:20'),
@@ -119,14 +119,13 @@ button.addEventListener('click', (event) => {
     var inputText = input.value;
     input.value = '';
     var specificData = trafficInfo.filter((x) => x.location.toUpperCase() == inputText.toUpperCase());
-    var span = document.querySelector('#departure-info');
+    var p = document.querySelector('#traffic-table ~ p');;
     if (specificData.length > 0) {
         var tt = new TrainTable(specificData[0]);
-        span.innerHTML = ' ' + specificData[0].location;
-        event.preventDefault();
+        p.innerHTML = 'Åker från: ' + specificData[0].location;
     }
     else {
-        span.innerHTML = '';
+        p.innerHTML = '';
     }
     event.preventDefault();
 });
