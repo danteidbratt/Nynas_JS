@@ -103,11 +103,11 @@ var trafficInfo = [
     status: 'Inga problem i trafiken'
 }];
 
-var weatherInfo = [new WeatherRow('9', 'Moln', '16°C', '3m/s'),
-    new WeatherRow('12', 'Sol', '18°C', '4m/s'),
-    new WeatherRow('15', 'Sol', '20°C', '2m/s'),
-    new WeatherRow('18', 'Regn', '19°C', '3m/s'),
-    new WeatherRow('21', 'Moln', '17°C', '1m/s')];
+var weatherInfo = [new WeatherRow('9:00', 'Moln', '16°C', '3m/s'),
+    new WeatherRow('12:00', 'Sol', '18°C', '4m/s'),
+    new WeatherRow('15:00', 'Sol', '20°C', '2m/s'),
+    new WeatherRow('18:00', 'Regn', '19°C', '3m/s'),
+    new WeatherRow('21:00', 'Moln', '17°C', '1m/s')];
 
 var wt = new WeatherTable(weatherInfo);
 
