@@ -43,18 +43,20 @@ function TrainTable(trainTable) {
 
     this.status = trainTable.status;
     
-    function printCaption(table) {
+    function printCaption(info) {
         var container = document.querySelector('#traffic-table');
         var caption = document.createElement('caption');
-        container.innerHTML = '<caption class="ml-3">' + table.status + '</caption> ' + container.innerHTML;
+        container.innerHTML = '<caption class="ml-3">' + info.status + '</caption> ' + container.innerHTML;
     }
     printCaption(this);
 };
 
-function WeatherTable(weatherTable) {
+function WeatherTable(info) {
     Table.call(this, {
-        container: document.querySelector('#traffic-table')
-    })
+        container: '#weather-table',
+        head: {a: 'Klocka', b: 'Väder', c: 'Värme', d: 'Vind'},
+        rows: info
+    });
 };
 
 function pointPrototype(subClass, superClass) {
@@ -71,7 +73,14 @@ function TrafficRow(nr, departs, arrives) {
     this.arrives = arrives;
 };
 
-var trafficData = [
+function WeatherRow(time, weather, temperature, wind) {
+    this.time = time;
+    this.weather = weather;
+    this.temperature = temperature;
+    this.wind = wind;
+};
+
+var trafficInfo = [
    {location: 'Stockholm',
     rows: [new TrafficRow('42', '11:30', '12:15'),
            new TrafficRow('42', '12:30', '13:15'),
@@ -94,15 +103,22 @@ var trafficData = [
     status: 'Inga problem i trafiken'
 }];
 
-var button = document.querySelector('#traffic-button');
+var weatherInfo = [new WeatherRow('9', 'Moln', '16°C', '3m/s'),
+    new WeatherRow('12', 'Sol', '18°C', '4m/s'),
+    new WeatherRow('15', 'Sol', '20°C', '2m/s'),
+    new WeatherRow('18', 'Regn', '19°C', '3m/s'),
+    new WeatherRow('21', 'Moln', '17°C', '1m/s')];
 
+var wt = new WeatherTable(weatherInfo);
+
+var button = document.querySelector('#traffic-button');
 button.addEventListener('click', (event) => {
     var container = document.querySelector('#traffic-table');
     container.innerHTML = '';
     var input = document.querySelector('#traffic-input');
     var inputText = input.value;
     input.value = '';
-    var specificData = trafficData.filter((x) => x.location.toUpperCase() == inputText.toUpperCase());
+    var specificData = trafficInfo.filter((x) => x.location.toUpperCase() == inputText.toUpperCase());
     var span = document.querySelector('#departure-info');
     if (specificData.length > 0) {
         var tt = new TrainTable(specificData[0]);
