@@ -8,8 +8,8 @@ function HttpGet(url) {
     this.ajax = new XMLHttpRequest();
 }
 
-HttpGet.prototype.proceed = function (callback) {
-    this.ajax.onreadystatechange = () => {
+HttpGet.prototype.proceed = function() {
+    this.ajax.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             var weatherData = JSON.parse(this.response);
             var weatherList = weatherData.list;
