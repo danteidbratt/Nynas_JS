@@ -9,7 +9,7 @@ function HttpGet(url) {
 }
 
 HttpGet.prototype.proceed = function (callback) {
-    this.ajax.onreadystatechange = function () {
+    this.ajax.onreadystatechange = () => {
         if (this.readyState === 4 && this.status === 200) {
             var weatherData = JSON.parse(this.response);
             var weatherList = weatherData.list;
