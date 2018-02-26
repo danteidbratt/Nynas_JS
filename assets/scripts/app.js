@@ -2,7 +2,7 @@ function Table(table) {
     this.container = document.querySelector(table.container);
     this.head = table.head;
     this.rows = table.rows;
-};
+}
 
 Table.prototype.printHead = function(table) {
     var head = document.createElement('thead');
@@ -43,7 +43,7 @@ function TrainTable(trainTable) {
         rows: trainTable.rows
     });
     this.status = trainTable.status;
-};
+}
 
 function WeatherTable(info) {
     Table.call(this, {
@@ -56,7 +56,7 @@ function WeatherTable(info) {
         },
         rows: info
     });
-};
+}
 
 function pointPrototype(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
@@ -76,14 +76,14 @@ function TrafficRow(nr, departs, arrives) {
     this.nr = nr;
     this.departs = departs;
     this.arrives = arrives;
-};
+}
 
 function WeatherRow(time, weather, temperature, wind) {
     this.time = time;
     this.weather = weather;
     this.temperature = temperature;
     this.wind = wind;
-};
+}
 
 var trafficInfo = [{
         location: 'Stockholm',
@@ -113,17 +113,6 @@ var trafficInfo = [{
         status: 'Inga problem i trafiken'
     }
 ];
-
-var weatherInfo = [new WeatherRow('9:00', 'Moln', '16°C', '3m/s'),
-    new WeatherRow('12:00', 'Sol', '18°C', '4m/s'),
-    new WeatherRow('15:00', 'Sol', '20°C', '2m/s'),
-    new WeatherRow('18:00', 'Regn', '19°C', '3m/s'),
-    new WeatherRow('21:00', 'Moln', '17°C', '1m/s')
-];
-
-var wt = new WeatherTable(weatherInfo);
-wt.printHead(wt);
-wt.printBody(wt);
 
 var button = document.querySelector('#train-button');
 button.addEventListener('click', (event) => {
