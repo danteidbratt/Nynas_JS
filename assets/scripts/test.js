@@ -8,12 +8,12 @@ function HttpGet(url) {
     this.ajax = new XMLHttpRequest();
 }
 
-HttpGet.prototype.proceed = function() {
+HttpGet.prototype.proceed = function(tableID) {
     this.ajax.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             var weatherData = JSON.parse(this.response);
             var weatherList = weatherData.list;
-            var tbody = document.querySelector('#weather-table')
+            var tbody = document.querySelector(tableID);
             var theList = [];
             for (let index = 0; index < 5; index++) {
                 var time = weatherList[index].dt_txt;
@@ -40,4 +40,4 @@ function fetch(url) {
     return new HttpGet(url);
 }
 
-fetch(API_URL).proceed();
+fetch(API_URL).proceed('#weather-table');
