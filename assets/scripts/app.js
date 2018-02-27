@@ -1,8 +1,50 @@
+'use strict'
+
 function Table(table) {
     this.container = document.querySelector(table.container);
     this.head = table.head;
     this.rows = table.rows;
 }
+
+function TrainTable(trainTable) {
+    Table.call(this, {
+        container: '#train-table',
+        head: {
+            a: 'Nr',
+            b: 'Avgång',
+            c: 'Ankomst'
+        },
+        rows: trainTable.rows
+    });
+    this.status = trainTable.status;
+
+    this.printCaption = function() {
+        var container = document.querySelector('#train-table');
+        var caption = document.createElement('caption');
+        container.innerHTML = '<caption class="ml-3">' + this.status + '</caption> ' + container.innerHTML;
+    }
+}
+
+function WeatherTable(info) {
+    Table.call(this, {
+        container: '#weather-table',
+        head: {
+            a: 'Klocka',
+            b: 'Väder',
+            c: 'Värme',
+            d: 'Vind'
+        },
+        rows: info
+    });
+}
+
+function pointPrototype(subClass, superClass) {
+    subClass.prototype = Object.create(superClass.prototype);
+    subClass.prototype.constructor = subClass;
+}
+
+pointPrototype(TrainTable, Table);
+pointPrototype(WeatherTable, Table);
 
 Table.prototype.printHead = function(table) {
     var head = document.createElement('thead');
@@ -30,46 +72,6 @@ Table.prototype.printBody = function(table) {
         tbody.appendChild(tr);
     });
     table.container.appendChild(tbody);
-}
-
-function TrainTable(trainTable) {
-    Table.call(this, {
-        container: '#train-table',
-        head: {
-            a: 'Nr',
-            b: 'Avgång',
-            c: 'Ankomst'
-        },
-        rows: trainTable.rows
-    });
-    this.status = trainTable.status;
-}
-
-function WeatherTable(info) {
-    Table.call(this, {
-        container: '#weather-table',
-        head: {
-            a: 'Klocka',
-            b: 'Väder',
-            c: 'Värme',
-            d: 'Vind'
-        },
-        rows: info
-    });
-}
-
-function pointPrototype(subClass, superClass) {
-    subClass.prototype = Object.create(superClass.prototype);
-    subClass.prototype.constructor = subClass;
-}
-
-pointPrototype(TrainTable, Table);
-pointPrototype(WeatherTable, Table);
-
-TrainTable.prototype.printCaption = function() {
-    var container = document.querySelector('#train-table');
-    var caption = document.createElement('caption');
-    container.innerHTML = '<caption class="ml-3">' + this.status + '</caption> ' + container.innerHTML;
 }
 
 function TrafficRow(nr, departs, arrives) {
